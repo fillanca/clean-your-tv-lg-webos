@@ -1,4 +1,4 @@
-name: Quiet Nuvio personal Android test build
+name: CYTV Quiet UI3 cameras Android test build
 on:
   workflow_dispatch:
   push:
@@ -33,7 +33,7 @@ jobs:
       - name: Check compatibility and account behavior
         run: |
           npm run lint:compat
-          node --test tests/nuvio/*.cjs
+          node --test tests/nuvio/*.cjs tests/cameras/*.cjs
       - name: Build verified TV payload
         run: python scripts/build-cytv.py --payload-only
       - name: Build separate Android test app
@@ -42,6 +42,6 @@ jobs:
         run: ./android/gradlew -p android :app:assembleDebug --console=plain
       - uses: actions/upload-artifact@v4
         with:
-          name: CYTV-Quiet-Nuvio-Android-test
+          name: CYTV-Quiet-UI3
           path: android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error

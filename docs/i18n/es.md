@@ -194,3 +194,8 @@ Los instaladores 1.6.0 para ordenador/Android y clientes OTA migrados eligen 720
 
 <!-- Personal Quiet/Nuvio fork, not a published upstream feature. -->
 Solo en esta versión personal (sin publicar): Nuvio añade vinculación de cuenta, sesión persistente y miniaturas en Classic. Requiere el APK Android personalizado. Consulta las [notas](../development/QUIET-NUVIO.md).
+
+
+### Quiet UI3 — Câmaras (test)
+
+Prueba personal Quiet UI3: abre Câmaras, configura el servidor NAS en Servidor y elige Mosaico o una cámara. Atrás vuelve al mosaico y después al inicio. Las miniaturas se actualizan cuando son visibles (60 segundos; 0 desactiva). Las credenciales RTSP permanecen en el NAS. Pendiente de validar en TV.

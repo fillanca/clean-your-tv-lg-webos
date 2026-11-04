@@ -195,3 +195,8 @@ Homebrew Channel이 이 설치 프로그램의 접근을 거부했습니다. web
 
 <!-- Personal Quiet/Nuvio fork, not a published upstream feature. -->
 개인 미출시 버전에만 해당: Nuvio는 Classic에 계정 연결, 세션 저장 및 썸네일을 추가합니다. 수정된 Android APK가 필요합니다. [참고 사항](../development/QUIET-NUVIO.md)을 확인하세요.
+
+
+### Quiet UI3 — Câmaras (test)
+
+Quiet UI3 개인 테스트: Câmaras에서 Servidor로 NAS 게이트웨이를 설정하고 Mosaico 또는 카메라를 선택합니다. 뒤로는 모자이크, 다음에는 홈으로 돌아갑니다. 보이는 미리보기는 60초마다 갱신됩니다(0은 끄기). RTSP 자격 증명은 NAS에만 저장됩니다. TV 검증은 아직 필요합니다.

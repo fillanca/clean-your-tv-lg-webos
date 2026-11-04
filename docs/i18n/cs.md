@@ -69,3 +69,8 @@ Instalátory 1.6.0 pro počítač/Android a migrovaní klienti OTA volí 720p ne
 
 <!-- Personal Quiet/Nuvio fork, not a published upstream feature. -->
 Pouze osobní větev (nevydaná): zástupce Nuvio přidává přihlášení, uloženou relaci a obrázky v motivu Classic. Vyžaduje vlastní Android APK. Viz [poznámky](../development/QUIET-NUVIO.md).
+
+
+### Quiet UI3 — Câmaras (test)
+
+Osobní test Quiet UI3: otevřete Câmaras, nastavte bránu NAS v Servidor a vyberte Mosaico nebo kameru. Zpět přejde na mozaiku a poté na úvodní obrazovku. Viditelné náhledy se obnovují po 60 sekundách (0 vypne). Údaje RTSP zůstávají na NAS. Ověření na TV ještě neproběhlo.

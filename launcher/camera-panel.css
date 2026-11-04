@@ -1,0 +1,21 @@
+#cameraPanel[hidden],#cameraPanel [hidden]{display:none!important}
+#cameraPanel{position:fixed;left:0;top:0;right:0;bottom:0;z-index:100000;background:#000;color:#fff;padding:40px;font:26px Arial,sans-serif}
+#cameraPanel .camera-toolbar{display:flex;align-items:center;height:85px}
+#cameraPanel h2{font-size:32px;margin:0 35px 0 0}
+#cameraPanel button{font:inherit;color:#fff;background:#222;border:2px solid #777;border-radius:12px;padding:12px 20px;margin-right:16px}
+#cameraPanel button[aria-pressed=true]{border-color:#36d9db}
+#cameraPanel button:focus,#cameraPanel input:focus{outline:4px solid #36d9db;outline-offset:3px}
+#cameraVideoBox{position:absolute;top:140px;bottom:100px;left:40px;right:40px}
+#cameraVideo{width:100%;height:100%;background:#000}
+#cameraStatus{position:absolute;bottom:25px;left:40px;right:40px;font-size:23px;color:#bbb}
+#cameraSetup{margin-top:70px;max-width:1200px}
+#cameraSetup input{font:inherit;background:#222;color:#fff;border:2px solid #777;border-radius:8px;padding:15px;width:960px;max-width:100%;margin:15px 0 30px}
+.camera-live-thumbs{position:absolute;top:0;left:0;width:100%;height:100%;background:#071719;overflow:hidden;border-radius:inherit}
+.camera-live-thumbs .camera-thumb{float:left;width:50%;height:100%;position:relative}
+.camera-thumb img{display:none;width:100%;height:100%;object-fit:cover}
+.camera-thumb.loaded img{display:block}
+.camera-thumb small{position:absolute;bottom:3px;left:3px;right:3px;background:rgba(0,0,0,.75);color:white;font:13px Arial,sans-serif;padding:4px}
+.camera-thumb.stale small{color:#ffd180}
+#cameraPanel button .camera-thumb{display:inline-block;width:100px;height:50px;position:relative;margin-left:10px;vertical-align:middle}
+#cameraPanel button .camera-thumb small{font-size:10px}
+#cameraSetup #cameraInterval{width:130px;margin:10px}

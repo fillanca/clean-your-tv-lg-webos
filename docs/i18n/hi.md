@@ -195,3 +195,8 @@ Homebrew Channel ने इस इंस्टॉलर की पहुँच �
 
 <!-- Personal Quiet/Nuvio fork, not a published upstream feature. -->
 केवल व्यक्तिगत अप्रकाशित संस्करण में: Nuvio, Classic में खाता जोड़ना, सत्र सहेजना और थंबनेल जोड़ता है। इसके लिए संशोधित Android APK चाहिए। [नोट्स](../development/QUIET-NUVIO.md) देखें।
+
+
+### Quiet UI3 — Câmaras (test)
+
+Quiet UI3 व्यक्तिगत परीक्षण: Câmaras खोलें, Servidor में NAS गेटवे सेट करें और Mosaico या कैमरा चुनें। वापस से पहले मोज़ेक और फिर होम खुलता है। दिखाई देने वाले थंबनेल हर 60 सेकंड में अपडेट होते हैं (0 बंद करता है)। RTSP विवरण NAS पर रहते हैं। टीवी पर जाँच अभी बाकी है।

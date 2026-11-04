@@ -374,6 +374,13 @@
   function activateTile(item) {
     if (item.add) {
       openPicker();
+    } else if (item.app.id === 'quiet.cameras') {
+      cancelHold();
+      stopPreview();
+      if (window.HomeCameras) {
+        setFocusZone('cameras');
+        HomeCameras.open(function () { focusTile(focusedTile); });
+      }
     } else if (item.app.id === 'airplay') {
       callLuna('luna://airplay.service/showAirplayPage', {}, function (result) {
         if (!result || !result.returnValue) {
@@ -615,7 +622,14 @@
     });
   }
   function initializeApps() {
-    library = AppLibrary.create(localStorage, window.TV_APPS && TV_APPS.apps || [], CONFIG);
+    var cameraApp = {id:'quiet.cameras',title:'Câmaras',icon:'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgcng9IjI0IiBmaWxsPSIjMDA4Yzk1Ii8+PHJlY3QgeD0iMjIiIHk9IjM5IiB3aWR0aD0iNzYiIGhlaWdodD0iNTEiIHJ4PSIxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSI3Ii8+PGNpcmNsZSBjeD0iNjAiIGN5PSI2NCIgcj0iMTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iNiIvPjxwYXRoIGQ9Ik0zOCAzOWw4LTEyaDI5bDggMTIiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iNyIvPjwvc3ZnPg==',iconColor:'#008c95'};
+    library = AppLibrary.create(localStorage, (window.TV_APPS && TV_APPS.apps || []).concat([cameraApp]), CONFIG);
+    try {
+      if (localStorage.getItem('tvhome.cameras.tile.v1') !== '1') {
+        library.add(cameraApp.id);
+        localStorage.setItem('tvhome.cameras.tile.v1', '1');
+      }
+    } catch (_) {}
     window.HomeAppControls = {
       refresh: function () {
         var button = getElement('homeShowAddApp');
@@ -1522,6 +1536,7 @@
     } finally { restoring = false; }
   }
   document.addEventListener("keyup", function (event) {
+    if(window.HomeCameras && HomeCameras.ownsFocus()){okPressed=false;return;}
     if(window.HomeNuvio && HomeNuvio.ownsFocus()){okPressed=false;return;}
     if (window.RootLauncherRendered !== true) return;
     if (window.RenewalPanel && window.RenewalPanel.isOpen()) {
@@ -1537,6 +1552,7 @@
     }
   });
   document.addEventListener("keydown", function (event) {
+    if(window.HomeCameras && HomeCameras.key(event)){return;}
     if(window.HomeNuvio && HomeNuvio.key(event)){return;}
     // Leave early Back/Home and key-up delivery to their native/recovery owners.
     if (window.RootLauncherRendered !== true) return;

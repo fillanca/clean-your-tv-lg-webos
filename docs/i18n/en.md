@@ -194,3 +194,8 @@ The 1.6.0 computer/Android installers and migrated OTA clients select 720p or 10
 
 <!-- Personal Quiet/Nuvio fork, not a published upstream feature. -->
 Personal fork only (unpublished): the Nuvio shortcut adds account linking, saved sessions and artwork in Classic. It requires the custom Android APK, not the official release. See [fork notes](../development/QUIET-NUVIO.md).
+
+
+### Quiet UI3 — Câmaras (test)
+
+Quiet UI3 personal test: open the Cameras tile, configure the NAS gateway in Server, and select Mosaic or a camera. Back returns to the mosaic, then Home. Thumbnails refresh while visible (60 seconds by default; 0 disables). RTSP credentials remain on the NAS. Device acceptance is pending.

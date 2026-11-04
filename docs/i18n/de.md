@@ -194,3 +194,8 @@ Die Computer-/Android-Installer von 1.6.0 und migrierten OTA-Clients wählen 720
 
 <!-- Personal Quiet/Nuvio fork, not a published upstream feature. -->
 Nur im persönlichen Fork (unveröffentlicht): Nuvio ergänzt Kontoanmeldung, gespeicherte Sitzungen und Vorschaubilder in Classic. Dafür ist das angepasste Android-APK nötig. Siehe [Hinweise](../development/QUIET-NUVIO.md).
+
+
+### Quiet UI3 — Câmaras (test)
+
+Quiet UI3 Privattest: Câmaras öffnen, NAS-Gateway unter Servidor einrichten und Mosaico oder eine Kamera wählen. Zurück führt zum Mosaik und dann zum Startbildschirm. Sichtbare Vorschaubilder werden alle 60 Sekunden aktualisiert (0 deaktiviert). RTSP-Zugangsdaten bleiben auf dem NAS. TV-Prüfung steht aus.

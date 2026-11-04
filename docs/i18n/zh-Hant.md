@@ -194,3 +194,8 @@ Homebrew Channel 拒絕此安裝程式存取。在 webOS 11 上，Homebrew 0.7.3
 
 <!-- Personal Quiet/Nuvio fork, not a published upstream feature. -->
 僅適用於未發布的個人修改版：Nuvio 在 Classic 中提供帳戶連結、工作階段儲存和縮圖。需要自訂 Android APK。請參閱[說明](../development/QUIET-NUVIO.md)。
+
+
+### Quiet UI3 — Câmaras (test)
+
+Quiet UI3 個人測試：開啟 Câmaras，在 Servidor 設定 NAS 閘道，再選擇 Mosaico 或單一攝影機。返回鍵先回到拼接畫面，再回到首頁。可見縮圖預設每 60 秒更新（0 為關閉）。RTSP 憑證僅保留在 NAS。尚待電視實機驗證。
