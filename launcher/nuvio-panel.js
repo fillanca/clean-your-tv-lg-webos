@@ -5,24 +5,24 @@ var api=root.QuietNuvio,storage=root.localStorage,preview=root.CYTV_BROWSER_PREV
 var optionsKey='tvhome.nuvio.options.v1',metaKey='tvhome.nuvio.metadata.v1';
 function read(key,fallback){try{return JSON.parse(storage.getItem(key)||'null')||fallback;}catch(e){return fallback;}}
 var options=read(optionsKey,{enabled:true,quiet:false,artwork:true,profile:null,profileName:''});
-var metadata=read(metaKey,{}),cache=null,connected=false,busy=false,epoch=0,pollTimer=0,pollGeneration=0,panelOpen=false,rowActive=false,previous=null;
+var metadata=read(metaKey,{}),cache=null,connected=false,busy=false,epoch=0,pollTimer=0,pollGeneration=0,panelOpen=false,rowActive=false,previous=null,scrollPosition=0,returnToSettings=null;
 var surface=document.getElementById('homeSurface'),row=document.createElement('section'),panel=document.createElement('div');
 row.id='nuvioRow';row.setAttribute('aria-label','Nuvio · Continuar a ver');
 row.innerHTML='<div class="nuvio-row-heading">Continuar a ver <span>NUVIO</span></div><div id="nuvioStatus" role="status"></div><div id="nuvioCards"></div>';
-surface.appendChild(row);
+(document.getElementById('stage')||surface).appendChild(row);
 panel.id='nuvioPanel';panel.hidden=true;panel.setAttribute('role','dialog');panel.setAttribute('aria-modal','true');panel.setAttribute('aria-label','Nuvio');
 panel.innerHTML='<div class="nuvio-dialog"><h2>Nuvio</h2><div id="nuvioBody"></div><button id="nuvioClose">Fechar</button></div>';
 document.body.appendChild(panel);
 var body=document.getElementById('nuvioBody'),cards=document.getElementById('nuvioCards'),status=document.getElementById('nuvioStatus');
 function saveOptions(){try{storage.setItem(optionsKey,JSON.stringify(options));}catch(e){notice('Não foi possível guardar as preferências.');}}
-function apply(){row.hidden=!options.enabled;surface.classList.toggle('nuvio-quiet',!!options.quiet);surface.classList.toggle('nuvio-row-enabled',!!options.enabled);}
+function apply(){row.hidden=!options.enabled||scrollPosition>0;surface.classList.toggle('nuvio-quiet',!!options.quiet);surface.classList.toggle('nuvio-row-enabled',!!options.enabled);}
 function notice(text){if(root.HomeNuvioHost)root.HomeNuvioHost.toast(text);else status.textContent=text;}
 function message(text){status.textContent=text;}
 function addText(text){var p=document.createElement('p');p.textContent=text;body.appendChild(p);return p;}
 function addButton(text,fn){var b=document.createElement('button');b.textContent=text;b.type='button';b.onclick=fn;body.appendChild(b);return b;}
 function begin(){previous=document.activeElement;panelOpen=true;rowActive=false;panel.hidden=false;body.textContent='';setTimeout(function(){if(panelOpen){var b=body.querySelector('button,input,select');if(b)b.focus();}},0);}
 function stopPoll(){clearTimeout(pollTimer);pollGeneration++;}
-function close(){stopPoll();panelOpen=false;panel.hidden=true;if(root.HomeNuvioHost)root.HomeNuvioHost.focusHeader();else if(previous)previous.focus();}
+function close(){stopPoll();panelOpen=false;panel.hidden=true;if(returnToSettings){var callback=returnToSettings;returnToSettings=null;callback();return;}if(root.HomeNuvioHost)root.HomeNuvioHost.focusHeader();else if(previous)previous.focus();}
 document.getElementById('nuvioClose').onclick=close;
 function checkbox(text,value,change){var label=document.createElement('label'),input=document.createElement('input');input.type='checkbox';input.checked=value;label.appendChild(input);label.appendChild(document.createTextNode(' '+text));input.onchange=function(){change(input.checked);saveOptions();apply();};body.appendChild(label);return input;}
 function settings(){begin();checkbox('Mostrar Continuar a ver na Home (layout Classic)',options.enabled,function(v){options.enabled=v;});checkbox('Aspeto Quiet OLED',options.quiet,function(v){options.quiet=v;});checkbox('Carregar títulos e miniaturas do Cinemeta',options.artwork,function(v){options.artwork=v;if(cache)render(cache);});
@@ -49,7 +49,7 @@ function key(event){var k=event.keyCode;if(k===36||k===172||k===403)return false
 if(!panelOpen&&!rowActive)return false;
 if(panelOpen){var active=document.activeElement;if(k===461||k===27){event.preventDefault();close();return true;}if(k===13){if(active&&active.tagName==='INPUT'&&active.type!=='checkbox')return true;if(active&&/^(BUTTON|INPUT)$/.test(active.tagName)){event.preventDefault();active.click();}return true;}if([37,38,39,40].indexOf(k)>=0){if(active&&active.tagName==='INPUT'&&(k===37||k===39))return true;var controls=Array.prototype.filter.call(panel.querySelectorAll('button,input'),function(b){return !b.disabled&&b.getClientRects().length;});var index=controls.indexOf(active),step=k===37||k===38?-1:1;if(controls.length)controls[Math.max(0,Math.min(controls.length-1,index+step))].focus();event.preventDefault();}return true;}
 var list=Array.prototype.slice.call(cards.children),current=list.indexOf(document.activeElement);if(k===13){event.preventDefault();if(list[current])list[current].click();return true;}if(k===37||k===39){event.preventDefault();var next=Math.max(0,Math.min(list.length-1,current+(k===37?-1:1)));if(list[next])list[next].focus();return true;}if(k===38||k===40||k===461||k===27){event.preventDefault();rowActive=false;if(root.HomeNuvioHost){if(k===38)root.HomeNuvioHost.focusHeader();else root.HomeNuvioHost.returnToGrid();}return true;}return false;}
-root.HomeNuvio={open:settings,key:key,ownsFocus:function(){return panelOpen||rowActive;},focusRow:focusRow};
-apply();if(preview){message('Nuvio · pré-visualização sem conta real.');}else api.call('status').then(function(s){connected=s.connected;if(connected&&options.profile)load();else message(connected?'Nuvio: escolhe o perfil no botão do topo.':'Associa a conta no botão Nuvio.');});
+root.HomeNuvio={open:function(config){returnToSettings=config&&config.onClose||null;settings();},setScroll:function(offset){scrollPosition=Math.max(0,Number(offset)||0);row.hidden=!options.enabled||scrollPosition>0;},key:key,ownsFocus:function(){return panelOpen||rowActive;},focusRow:focusRow};
+apply();if(preview){message('Nuvio · pré-visualização sem conta real.');}else api.call('status').then(function(s){connected=s.connected;if(connected&&options.profile)load();else message(connected?'Nuvio: escolhe o perfil nas Configurações.':'Associa a conta nas Configurações.');});
 setInterval(function(){if(!document.hidden)load();},300000);document.addEventListener('visibilitychange',function(){if(!document.hidden)load();});
 })(window);

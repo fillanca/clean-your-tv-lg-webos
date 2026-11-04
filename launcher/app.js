@@ -71,7 +71,7 @@
     // style.css's 600 ms .ambient fade plus a few frames, before the glow is baked.
     AMBIENT_FADE = 650,
     AMBIENT_BAKED = '#ambientBase{',
-    topButtons = [getElement("btnInputs"), getElement("btnWifi"), getElement("btnSettings"), getElement("btnNuvio")].filter(Boolean),
+    topButtons = [getElement("btnInputs"), getElement("btnWifi"), getElement("btnSettings")],
     inputsPanel = getElement("inputsPanel"),
     tiles = [],
     focusZone = "grid",
@@ -180,7 +180,7 @@
       }));
     });
   }
-  window.HomeNuvioHost={enterRow:function(){cancelHold();setFocusZone("nuvio");},launch:launchApp,toast:function(text){showToast(text);},returnToGrid:function(){focusTile(focusedTile);},focusHeader:function(){focusTopButton(3);}};
+  window.HomeNuvioHost={enterRow:function(){cancelHold();setFocusZone("nuvio");},launch:launchApp,toast:function(text){showToast(text);},returnToGrid:function(){focusTile(focusedTile);},focusHeader:function(){focusTopButton(2);}};
   function showToast(message) {
     var toast = getElement("toast");
     toast.textContent = message;
@@ -279,6 +279,7 @@
   // Remote scrolling: a tap glides to the new row; a held arrow (or a repeat during a
   // glide) jumps straight there, so the list never chases an unfinished scroll.
   function setScroll(offset) {
+    if(window.HomeNuvio)HomeNuvio.setScroll(offset);
     var surface = getElement('homeSurface'), target = "translateY(" + -offset + "px)";
     if (stage.style.transform !== target && surface.classList.contains('ctv-remote-navigation')) {
       clearTimeout(scrollGlideTimer);
@@ -1410,7 +1411,6 @@
     return inputRows.length;
   }
   function activateTopButton(index) {
-    if(index === 3 && window.HomeNuvio){HomeNuvio.open();return;}
     0 === index ? function () {
       if (fillInputsPanel()) {
         var e = sceneRect(topButtons[0]);

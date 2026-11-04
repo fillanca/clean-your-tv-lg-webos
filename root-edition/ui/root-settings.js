@@ -288,6 +288,7 @@
   }
   document.addEventListener('home-layout-change', function (event) { if (panel && !panel.hidden && buttons[selected].hidden && event.homeColumnsFocus === buttons[selected]) move(1); });
   window.RenewalPanel = {
+    openNuvio: function () { if(busy||!window.HomeNuvio)return;close();HomeNuvio.open({onClose:function(){RenewalPanel.open();var control=document.getElementById("homeNuvioSettings");if(control)control.focus();}}); },
     isOpen: function () { return !!panel && !panel.hidden; },
     open: function () {
       if (!panel) build();

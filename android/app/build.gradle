@@ -34,8 +34,8 @@ android {
     }
     buildTypes {
         debug {
-            applicationIdSuffix '.quiet'
-            versionNameSuffix '-quiet-nuvio'
+            applicationIdSuffix '.quiet.ui2'
+            versionNameSuffix '-quiet-ui2'
         }
         release {
             debuggable false

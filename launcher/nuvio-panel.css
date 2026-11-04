@@ -1,5 +1,4 @@
 /* Personal fork integration: the original grid and Home/recovery remain owned by Home. */
-#btnNuvio{padding:0 24px;font-size:24px}
 #nuvioRow{position:absolute;top:330px;left:112px;width:1696px;height:300px;z-index:4}
 #nuvioRow[hidden],#nuvioPanel[hidden]{display:none}
 .nuvio-row-heading{font-size:25px;color:#eee;line-height:1.3}
@@ -38,3 +37,11 @@ body.scrolled #homeSurface.nuvio-row-enabled #nuvioRow,body.editing #homeSurface
 .quiet-weather-day{margin-left:14px}
 #quietWeather[hidden]{display:none}
 .nuvio-dialog input[type="text"],.nuvio-dialog input[type="number"]{width:350px;height:42px;background:#08090b;color:#eee;border:1px solid #65748c;font:inherit;padding:4px 8px}
+
+/* Quiet must also cover the launcher’s settled/baked ambient layer and theme wallpaper. */
+#homeSurface.nuvio-quiet{background:#000 !important;background-image:none !important}
+#homeSurface.nuvio-quiet .ambient,#homeSurface.nuvio-quiet .ambient-base,#homeSurface.nuvio-quiet #ambientBase{display:none !important}
+#homeSurface.nuvio-quiet .ctv-dock,#homeSurface.nuvio-quiet .ctv-shortcut{background:#14161a !important;box-shadow:none !important}
+
+/* The layout selector must never override the semantic hidden state while scrolling. */
+#homeSurface #nuvioRow[hidden]{display:none !important}

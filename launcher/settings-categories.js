@@ -50,6 +50,10 @@
    title.textContent=t(group.label);pane.appendChild(title);
    if(group.id==='language'&&root.HomeI18n&&HomeI18n.mountLanguagePicker)HomeI18n.mountLanguagePicker(pane);
    else group.elements.forEach(function(el){if(el)pane.appendChild(el);});
+   if(group.id==='home'){
+    var nuvio=document.createElement('button');nuvio.id='homeNuvioSettings';nuvio.type='button';nuvio.textContent='Nuvio, OLED e meteorologia';
+    nuvio.onclick=function(){if(root.RenewalPanel&&root.RenewalPanel.openNuvio)root.RenewalPanel.openNuvio();};pane.appendChild(nuvio);
+   }
    tab.addEventListener('focusin',function(){if(document.activeElement===tab)select(i);});tab.onclick=function(){select(i);tab.focus();};
    nav.appendChild(tab);content.appendChild(pane);tabs.push(tab);panes.push(pane);
   });

@@ -1,6 +1,6 @@
 # Personal Quiet/Nuvio fork (unpublished)
 
-This source branch modifies the original Clean Your TV launcher. It is not an upstream release, a standalone Quiet app, or a theme-only package. The original Home Helper, emergency exit, watchdog, installer and recovery implementation remain the owners of system control. Use Classic layout for the inline Continue Watching row; other fixed-layout themes hide that row to avoid overlap. The Nuvio header button opens account/settings in either edition.
+This source branch modifies the original Clean Your TV launcher. It is not an upstream release, a standalone Quiet app, or a theme-only package. The original Home Helper, emergency exit, watchdog, installer and recovery implementation remain the owners of system control. Use Classic layout for the inline Continue Watching row; other fixed-layout themes hide that row to avoid overlap. Nuvio account/settings are opened from Settings → Your Home screen → Nuvio, OLED e meteorologia in either edition.
 
 ## Android delivery
 
@@ -38,9 +38,9 @@ Metadata is cached for 24 hours, bounded to 60 titles. Requests are limited to t
 
 ## Controls and layout
 
-A fourth header shortcut, Nuvio, uses the original launcher's top-button navigation. In Classic, Up from the first grid row enters Continue Watching when cards are available. Left/Right select a card, OK launches the Nuvio title detail via the launcher's existing launch function. Down/Back returns to the grid, Up returns to the Nuvio shortcut. The panel traps only its own navigation and leaves Home/emergency events untouched; no key-up event is stopped. Header and row elements retain pointer support.
+The header retains the original three shortcuts. A Nuvio/OLED/weather entry in the original Home settings pane opens the integration, closing the parent settings panel while the child owns focus and restoring settings when it closes. In Classic, Up from the first grid row enters Continue Watching when cards are available. Left/Right select a card, OK launches the Nuvio title detail via the launcher's existing launch function. Down/Back returns to the grid, Up returns to the Settings shortcut. The panel traps only its own navigation and leaves Home/emergency events untouched; no key-up event is stopped. Header and row elements retain pointer support.
 
-The Quiet OLED option hides the ambient background while retaining the original theme/layout system. The inline row is hidden during scrolling/editing and on incompatible fixed layouts; full theme design is not part of this focused account/artwork correction. The three-day Open-Meteo forecast is ported to the original header, with a two-hour cache, configurable coordinates in the Nuvio panel and non-blocking requests. It is disabled in browser previews. Weather coordinates/preferences are separate from account tokens. Open-Meteo receives configured coordinates and the requesting IP.
+The Quiet OLED option enforces a black wallpaper and hides both animated ambient layers and the settled ambient-base background while retaining the original theme/layout system. The row is a child of the scrolling stage and its semantic hidden state takes precedence over layout CSS from the first nonzero scroll offset. The inline row is hidden during scrolling/editing and on incompatible fixed layouts; full theme design is not part of this focused account/artwork correction. The three-day Open-Meteo forecast is ported to the original header, with a two-hour cache, configurable coordinates in the Nuvio panel and non-blocking requests. It is disabled in browser previews. Weather coordinates/preferences are separate from account tokens. Open-Meteo receives configured coordinates and the requesting IP.
 
 ## Verification scope
 
@@ -53,3 +53,9 @@ No user credentials are shipped. `nuvio-config.js` contains only public client c
 Eight Nuvio adapter/panel tests passed, as did ES5/CSS compatibility, TV inventory/profile/layout, Helper diagnostics and viewport tests. All 27 Android Python tests passed. The legacy browser suite could not start because its Chrome executable is unavailable here; jsdom checks do not replace physical rendering checks.
 
 The Java-based Gradle download failed with a network-unreachable error in this environment, including an explicit proxy retry. No APK is claimed to have been compiled, signed or installed here. The manual GitHub Actions workflow is provided for building the separate test APK on a personal fork. This is a source handoff, not a published Android release.
+
+## UI2 device feedback correction
+
+The owner observed Continue Watching overlapping the moving app grid and requested moving the Nuvio shortcut into Settings. UI2 makes the row follow the same stage and hides it on any nonzero scroll offset, without depending on the later header-scrolled threshold. Its hidden selector outranks the layout display rule. OLED now also hides the settled `ambientBase` layer. Regression tests check computed visibility, restore after scrolling, ambient visibility and settings ownership.
+
+The Android test installer uses ID `com.cleanyourtv.android.quiet.ui2` and label **CYTV Quiet UI2**. Each GitHub-hosted debug build uses a fresh signing key; this separate identity permits installation alongside the first test installer without deleting its receipts. The TV launcher ID is unchanged, so normal launcher-origin session/preferences can persist across installation. Device validation remains pending.
