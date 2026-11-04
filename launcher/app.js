@@ -71,7 +71,7 @@
     // style.css's 600 ms .ambient fade plus a few frames, before the glow is baked.
     AMBIENT_FADE = 650,
     AMBIENT_BAKED = '#ambientBase{',
-    topButtons = [getElement("btnInputs"), getElement("btnWifi"), getElement("btnSettings")],
+    topButtons = [getElement("btnInputs"), getElement("btnWifi"), getElement("btnSettings"), getElement("btnNuvio")].filter(Boolean),
     inputsPanel = getElement("inputsPanel"),
     tiles = [],
     focusZone = "grid",
@@ -180,6 +180,7 @@
       }));
     });
   }
+  window.HomeNuvioHost={enterRow:function(){cancelHold();setFocusZone("nuvio");},launch:launchApp,toast:function(text){showToast(text);},returnToGrid:function(){focusTile(focusedTile);},focusHeader:function(){focusTopButton(3);}};
   function showToast(message) {
     var toast = getElement("toast");
     toast.textContent = message;
@@ -1409,6 +1410,7 @@
     return inputRows.length;
   }
   function activateTopButton(index) {
+    if(index === 3 && window.HomeNuvio){HomeNuvio.open();return;}
     0 === index ? function () {
       if (fillInputsPanel()) {
         var e = sceneRect(topButtons[0]);
@@ -1520,6 +1522,7 @@
     } finally { restoring = false; }
   }
   document.addEventListener("keyup", function (event) {
+    if(window.HomeNuvio && HomeNuvio.ownsFocus()){okPressed=false;return;}
     if (window.RootLauncherRendered !== true) return;
     if (window.RenewalPanel && window.RenewalPanel.isOpen()) {
       okPressed = false;
@@ -1534,6 +1537,7 @@
     }
   });
   document.addEventListener("keydown", function (event) {
+    if(window.HomeNuvio && HomeNuvio.key(event)){return;}
     // Leave early Back/Home and key-up delivery to their native/recovery owners.
     if (window.RootLauncherRendered !== true) return;
     var key = event.keyCode;
@@ -1564,6 +1568,8 @@
           }
           finishMoving(false);
         }
+      } else if ("grid" === focusZone && key === 38 && rowFor(focusedTile) === 0 && window.HomeNuvio && HomeNuvio.focusRow()) {
+        event.preventDefault();return;
       } else if ("inputs" === focusZone) {
         if (38 === key) {
           if (0 === focusedInput) {

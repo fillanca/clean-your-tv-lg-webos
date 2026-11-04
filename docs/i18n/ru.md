@@ -190,3 +190,7 @@ Homebrew Channel запретил доступ этому установщику
 [HD/FHD details (English)](../development/HOME-GRAPHICS-RESOLUTION.md#automatic-selection-and-ota).
 
 > **1.6.0:** сохраните отчёт исходной неудачной попытки. Новые отчёты отделяют сохранённую первую ошибку от последующих проверок и содержат отфильтрованную сводку Doctor/статуса; после успешной установки, проверки статуса и возврата LG Home тоже можно сохранить отчёт. Отсутствующие старые данные остаются неизвестными; отчёт не разрешает восстановление. [↗](../development/INSTALLER-DIAGNOSTICS.md).
+
+
+<!-- Personal Quiet/Nuvio fork, not a published upstream feature. -->
+Только в личной неопубликованной версии: Nuvio добавляет привязку аккаунта, сохранение сеанса и миниатюры в Classic. Нужен изменённый Android APK. См. [примечания](../development/QUIET-NUVIO.md).

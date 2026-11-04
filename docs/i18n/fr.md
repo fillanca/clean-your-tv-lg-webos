@@ -190,3 +190,7 @@ Les installateurs ordinateur/Android de 1.6.0 et clients OTA migrés choisissent
 [HD/FHD details (English)](../development/HOME-GRAPHICS-RESOLUTION.md#automatic-selection-and-ota).
 
 > **1.6.0:** conservez le rapport de l’échec initial. Les nouveaux rapports séparent la première erreur enregistrée des vérifications suivantes et contiennent un résumé filtré de Doctor/état. Un export est aussi proposé après une installation, une vérification d’état ou une restauration réussie. Les anciennes données manquantes restent inconnues ; ce rapport n’autorise aucune récupération. [↗](../development/INSTALLER-DIAGNOSTICS.md).
+
+
+<!-- Personal Quiet/Nuvio fork, not a published upstream feature. -->
+Uniquement dans cette version personnelle (non publiée) : Nuvio ajoute la connexion, la session persistante et les miniatures dans Classic. Un APK Android personnalisé est nécessaire. Voir les [notes](../development/QUIET-NUVIO.md).

@@ -191,3 +191,7 @@ Instalatory komputerowe/Android 1.6.0 i zmigrowane klienty OTA wybierają 720p l
 [HD/FHD details (English)](../development/HOME-GRAPHICS-RESOLUTION.md#automatic-selection-and-ota).
 
 > **1.6.0:** zachowaj raport z pierwotnej nieudanej próby. Nowe raporty oddzielają pierwszy zapisany błąd od kolejnych kontroli i zawierają filtrowane podsumowanie Doctor/stanu. Eksport jest dostępny także po udanej instalacji, kontroli stanu lub przywróceniu. Brakujące starsze dane pozostają nieznane; raport nie uprawnia do odzyskiwania. [↗](../development/INSTALLER-DIAGNOSTICS.md).
+
+
+<!-- Personal Quiet/Nuvio fork, not a published upstream feature. -->
+Tylko w osobistej wersji (nieopublikowanej): Nuvio dodaje łączenie konta, zapisaną sesję i miniatury w Classic. Wymagany jest zmodyfikowany APK Android. Zobacz [uwagi](../development/QUIET-NUVIO.md).

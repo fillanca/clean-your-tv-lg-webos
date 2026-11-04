@@ -33,6 +33,10 @@ android {
         }
     }
     buildTypes {
+        debug {
+            applicationIdSuffix '.quiet'
+            versionNameSuffix '-quiet-nuvio'
+        }
         release {
             debuggable false
             signingConfig signingConfigs.release

@@ -1,0 +1,45 @@
+name: Quiet Nuvio personal Android test build
+on:
+  workflow_dispatch:
+  push:
+    branches: [feature/quiet-nuvio-android]
+permissions:
+  contents: read
+jobs:
+  android-test-apk:
+    if: github.repository != 'Razdva122/clean-your-tv-lg-webos'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+      - name: Install dependencies
+        run: |
+          npm ci --no-audit --no-fund
+          python -m pip install -r scripts/build-requirements.txt -r cytv/requirements.txt ziglang==0.14.1
+          sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Check compatibility and account behavior
+        run: |
+          npm run lint:compat
+          node --test tests/nuvio/*.cjs
+      - name: Build verified TV payload
+        run: python scripts/build-cytv.py --payload-only
+      - name: Build separate Android test app
+        env:
+          CYTV_BUILD_PYTHON: python3
+        run: ./android/gradlew -p android :app:assembleDebug --console=plain
+      - uses: actions/upload-artifact@v4
+        with:
+          name: CYTV-Quiet-Nuvio-Android-test
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error

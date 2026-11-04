@@ -190,3 +190,7 @@ Homebrew Channel 拒絕此安裝程式存取。在 webOS 11 上，Homebrew 0.7.3
 [HD/FHD details (English)](../development/HOME-GRAPHICS-RESOLUTION.md#automatic-selection-and-ota).
 
 > **1.6.0:** 請保留最初失敗嘗試的報告。新報告會區分已記錄的首次錯誤與後續檢查，並提供經過篩選的 Doctor/狀態摘要。安裝、狀態檢查或還原成功後也可匯出報告。缺少的歷史證據仍標為未知；報告不授予復原操作權限。 [↗](../development/INSTALLER-DIAGNOSTICS.md).
+
+
+<!-- Personal Quiet/Nuvio fork, not a published upstream feature. -->
+僅適用於未發布的個人修改版：Nuvio 在 Classic 中提供帳戶連結、工作階段儲存和縮圖。需要自訂 Android APK。請參閱[說明](../development/QUIET-NUVIO.md)。

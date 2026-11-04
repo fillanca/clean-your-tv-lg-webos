@@ -190,3 +190,7 @@ The 1.6.0 computer/Android installers and migrated OTA clients select 720p or 10
 [HD/FHD details (English)](../development/HOME-GRAPHICS-RESOLUTION.md#automatic-selection-and-ota).
 
 > **1.6.0:** save the original failed-attempt report. New reports separate a recorded first error from later checks and include a filtered Doctor/status summary; successful setup/status/restore also offer an export. Missing older evidence remains unknown; this does not authorize recovery. [↗](../development/INSTALLER-DIAGNOSTICS.md).
+
+
+<!-- Personal Quiet/Nuvio fork, not a published upstream feature. -->
+Personal fork only (unpublished): the Nuvio shortcut adds account linking, saved sessions and artwork in Classic. It requires the custom Android APK, not the official release. See [fork notes](../development/QUIET-NUVIO.md).

@@ -1,0 +1,1 @@
+window.QUIET_NUVIO_CONFIG = {"NUVIO_SUPABASE_URL": "https://api.nuvio.tv", "NUVIO_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlzcyI6InN1cGFiYXNlIiwiaWF0IjoxNzgxNTIxMzQ2LCJleHAiOjE5MzkyMDEzNDZ9.tmQaj682pwzehpqlgCDMnySOqiUvpgRbrE43T4VJpDI", "DEVICE_LOGIN_WEB_BASE_URL": "https://nuvio.tv/link"};

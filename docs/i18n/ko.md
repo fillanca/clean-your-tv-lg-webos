@@ -191,3 +191,7 @@ Homebrew Channel이 이 설치 프로그램의 접근을 거부했습니다. web
 [HD/FHD details (English)](../development/HOME-GRAPHICS-RESOLUTION.md#automatic-selection-and-ota).
 
 > **1.6.0:** 처음 실패한 시도의 보고서를 보관하세요. 새 보고서는 기록된 첫 오류와 이후 점검을 구분하고 필터링된 Doctor/상태 요약을 포함합니다. 설정, 상태 확인 또는 복원이 성공한 뒤에도 보고서를 내보낼 수 있습니다. 없는 과거 증거는 알 수 없음으로 남으며, 보고서가 복구 작업을 허용하지는 않습니다. [↗](../development/INSTALLER-DIAGNOSTICS.md).
+
+
+<!-- Personal Quiet/Nuvio fork, not a published upstream feature. -->
+개인 미출시 버전에만 해당: Nuvio는 Classic에 계정 연결, 세션 저장 및 썸네일을 추가합니다. 수정된 Android APK가 필요합니다. [참고 사항](../development/QUIET-NUVIO.md)을 확인하세요.

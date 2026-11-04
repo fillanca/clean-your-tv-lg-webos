@@ -191,3 +191,7 @@ Homebrew Channel ने इस इंस्टॉलर की पहुँच �
 [HD/FHD details (English)](../development/HOME-GRAPHICS-RESOLUTION.md#automatic-selection-and-ota).
 
 > **1.6.0:** मूल विफल प्रयास की रिपोर्ट सुरक्षित रखें। नई रिपोर्ट में दर्ज पहली त्रुटि बाद की जाँचों से अलग होती है और Doctor/स्थिति का फ़िल्टर किया गया सारांश मिलता है। सफल स्थापना, स्थिति जाँच और बहाली के बाद भी रिपोर्ट सहेज सकते हैं। पुराने अनुपलब्ध प्रमाण अज्ञात ही रहते हैं; रिपोर्ट पुनर्प्राप्ति की अनुमति नहीं देती। [↗](../development/INSTALLER-DIAGNOSTICS.md).
+
+
+<!-- Personal Quiet/Nuvio fork, not a published upstream feature. -->
+केवल व्यक्तिगत अप्रकाशित संस्करण में: Nuvio, Classic में खाता जोड़ना, सत्र सहेजना और थंबनेल जोड़ता है। इसके लिए संशोधित Android APK चाहिए। [नोट्स](../development/QUIET-NUVIO.md) देखें।

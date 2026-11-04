@@ -65,3 +65,7 @@ Kompatibilita závisí na konkrétním modelu, firmwaru a ovladači.
 Instalátory 1.6.0 pro počítač/Android a migrovaní klienti OTA volí 720p nebo 1080p podle schopností TV. Pokud je nelze ověřit, operace se zastaví. Starší samostatně instalované aktualizátory vyžadují popsanou migraci z počítače; obnova zachová původní balíčky.
 
 [HD/FHD details (English)](../development/HOME-GRAPHICS-RESOLUTION.md#automatic-selection-and-ota).
+
+
+<!-- Personal Quiet/Nuvio fork, not a published upstream feature. -->
+Pouze osobní větev (nevydaná): zástupce Nuvio přidává přihlášení, uloženou relaci a obrázky v motivu Classic. Vyžaduje vlastní Android APK. Viz [poznámky](../development/QUIET-NUVIO.md).

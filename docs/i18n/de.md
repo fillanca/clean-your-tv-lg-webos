@@ -190,3 +190,7 @@ Die Computer-/Android-Installer von 1.6.0 und migrierten OTA-Clients wählen 720
 [HD/FHD details (English)](../development/HOME-GRAPHICS-RESOLUTION.md#automatic-selection-and-ota).
 
 > **1.6.0:** Bewahren Sie den Bericht des ursprünglichen Fehlversuchs auf. Neue Berichte trennen den gespeicherten ersten Fehler von späteren Prüfungen und enthalten eine gefilterte Doctor-/Statusübersicht. Auch nach erfolgreicher Einrichtung, Statusprüfung oder Wiederherstellung lässt sich ein Bericht speichern. Fehlende ältere Nachweise bleiben unbekannt; der Bericht erlaubt keine Wiederherstellungsaktion. [↗](../development/INSTALLER-DIAGNOSTICS.md).
+
+
+<!-- Personal Quiet/Nuvio fork, not a published upstream feature. -->
+Nur im persönlichen Fork (unveröffentlicht): Nuvio ergänzt Kontoanmeldung, gespeicherte Sitzungen und Vorschaubilder in Classic. Dafür ist das angepasste Android-APK nötig. Siehe [Hinweise](../development/QUIET-NUVIO.md).
