@@ -34,7 +34,7 @@ function refresh(force){
    function failure(){if(!finish())return;selected.forEach(function(el){var label=el.querySelector('small');label.textContent=(camera==='argus2'?'Argus 2':'E1')+' · sem atualização';el.classList.add('stale');});}
    image.onerror=failure;
    image.onload=function(){if(!finish())return;selected.forEach(function(el){el.querySelector('img').src=image.src;el.querySelector('small').textContent=(camera==='argus2'?'Argus 2':'E1')+' · '+new Date().toLocaleTimeString();el.classList.add('loaded');el.classList.remove('stale');});};
-   image.src=settings.server+'/snapshot/'+camera+'.jpg?t='+now;
+   image.src=settings.server+'/snapshot/'+camera+'-'+(settings.feeds&&settings.feeds[camera]==='main'?'main':'sub')+'.jpg?t='+now;
  });
  if(!left)pending=false;
 }

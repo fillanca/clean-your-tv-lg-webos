@@ -3,6 +3,9 @@ on:
   workflow_dispatch:
   push:
     branches: [feature/quiet-nuvio-android]
+concurrency:
+  group: quiet-ui3-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:

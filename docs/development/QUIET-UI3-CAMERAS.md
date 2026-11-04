@@ -17,12 +17,20 @@ candidate and carries no physical-TV acceptance claim.
 - Configure an HTTP(S) gateway origin using Cameras → Server. Gateway credentials,
   URL paths, queries and fragments are rejected. RTSP credentials remain on the NAS.
 
-New state: `tvhome.cameras.v1` stores the gateway origin and refresh interval;
+New state: `tvhome.cameras.v1` stores the gateway origin, per-camera feed selection and refresh interval;
 `tvhome.cameras.tile.v1` is a one-time tile migration marker. These are independent
 of account tokens, weather and layout settings. UI2's Nuvio/OLED fixes are retained.
 
-Required NAS routes: `/hls/mosaic/index.m3u8`, `/hls/argus2/index.m3u8`,
-`/hls/e1/index.m3u8`, `/snapshot/argus2.jpg`, `/snapshot/e1.jpg`. The previous
+Each camera independently selects Sub (default) or Main in the Server settings.
+The setting applies to both native video and snapshots. The gateway maps those
+choices to separate RTSP URLs configured only on the NAS; it does not promise the
+camera supports both URLs. The NAS output remains bounded to 1280 pixels across
+for mosaic, and 1920x1080 maximum for individual Main views.
+
+Required NAS routes: `/hls/mosaic-sub-sub/index.m3u8` (all four Sub/Main
+combinations), `/hls/argus2-sub/index.m3u8`, `/hls/argus2-main/index.m3u8`,
+`/hls/e1-sub/index.m3u8`, `/hls/e1-main/index.m3u8`, and
+`/snapshot/{argus2|e1}-{sub|main}.jpg`. The previous
 mosaic-only NAS configuration needs the snapshot service update supplied with UI3.
 All routes are LAN-only and unauthenticated on the LAN in that sample deployment;
 do not expose the sample gateway to the Internet. Capture polling wakes battery
