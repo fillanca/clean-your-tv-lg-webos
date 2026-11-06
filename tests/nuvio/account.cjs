@@ -31,6 +31,8 @@ test('pairing, profiles, protected profiles, read-only progress and cache',async
  assert.equal(data.items[0].target,'nuvio://detail/movie/tt123');
  await s.api.call('progress',{profile:1});
  assert.equal(s.calls.filter(c=>c.url.endsWith('sync_pull_watch_progress')).length,1);
+ await s.api.call('progress',{profile:1,force:true});
+ assert.equal(s.calls.filter(c=>c.url.endsWith('sync_pull_watch_progress')).length,2);
  assert.equal(s.calls.some(c=>/push_|delete_|set_profile/.test(c.url)),false);
 });
 test('refreshes session once for concurrent profile calls',async()=>{
@@ -46,6 +48,7 @@ test('filters completed, unstarted, foreign profile; deduplicates latest series'
  const s=setup();const data=s.api.normalize([
  {content_id:'a',content_type:'series',position:40,duration:100,updated_at:1,episode:1},
  {content_id:'a',content_type:'series',position:50,duration:100,updated_at:2,episode:2},
+ {content_id:'b',position:40,duration:100,updated_at:-1},
  {content_id:'b',position:90,duration:100}, {content_id:'c',position:1,duration:100},
  {content_id:'d',progress_percent:50,profile_id:2}, {content_id:'e',progress_percent:85,source:'simkl_playback'},
  {content_id:'f',progress_percent:45,source:'trakt_history'}],1);
